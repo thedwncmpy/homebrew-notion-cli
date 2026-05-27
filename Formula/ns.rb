@@ -29,8 +29,9 @@ class Ns < Formula
 
   def caveats
     <<~EOS
-      Enable zsh completion by adding this line to your ~/.zshrc:
-        eval "$(ns completion zsh)"
+      Enable shell completion:
+        zsh (~/.zshrc): eval "$(ns completion zsh)"
+        bash (~/.bashrc): eval "$(ns completion bash)"
     EOS
   end
 
