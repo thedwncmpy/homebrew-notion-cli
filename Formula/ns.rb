@@ -26,6 +26,14 @@ class Ns < Formula
                              "source \"#{libexec}/lib/notion_cli.zsh\""
   end
 
+
+  def caveats
+    <<~EOS
+      Enable zsh completion by adding this line to your ~/.zshrc:
+        eval "$(ns completion zsh)"
+    EOS
+  end
+
   # A simple check to ensure the binary is installed correctly and runs
   test do
     assert_match "Usage: ns <command>", shell_output("#{bin}/ns help")
