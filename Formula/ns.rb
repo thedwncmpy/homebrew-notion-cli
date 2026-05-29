@@ -20,8 +20,11 @@ class Ns < Formula
     bin.install "bin/ns"
 
     # 3. Fix the internal path resolution.
-    # The original script assumes a relative path to the 'lib' folder.
-    # Since we moved 'lib' to libexec, we must update the script to point to the new absolute path.
+    # Current launcher executes the zsh script directly; older versions sourced it.
+    # Keep both replacements for compatibility so packaging doesn't break across tags.
+    inreplace bin/"ns",
+              'exec "$ZSH_BIN" "$SCRIPT_DIR/../lib/notion_cli.zsh" "$@"',
+              "exec \"$ZSH_BIN\" \"#{libexec}/lib/notion_cli.zsh\" \"$@\""
     inreplace bin/"ns", 'source "$SCRIPT_DIR/../lib/notion_cli.zsh"',
                              "source \"#{libexec}/lib/notion_cli.zsh\""
   end
