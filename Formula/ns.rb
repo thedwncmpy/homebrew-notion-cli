@@ -24,9 +24,12 @@ class Ns < Formula
     ns_content.gsub!('source "$SCRIPT_DIR/../lib/notion_cli.zsh"',
                      "source \"#{libexec}/lib/notion_cli.zsh\"")
 
-    # 3. Install rewritten executable.
-    ns_src.write(ns_content)
-    bin.install ns_src
+    # 3. Install rewritten executable from a distinct staged file.
+    # Using a different source filename avoids Homebrew treating this as
+    # an overwrite of the original staged `bin/ns`.
+    rewritten = buildpath/"ns-homebrew-launcher"
+    rewritten.write(ns_content)
+    bin.install rewritten => "ns"
   end
 
 
