@@ -3,8 +3,8 @@
 class Ns < Formula
   desc "Notion markdown sync CLI"
   homepage "https://github.com/thedwncmpy/notion-cli"
-  url "https://github.com/thedwncmpy/notion-cli/archive/refs/tags/v0.1.13.tar.gz"
-  sha256 "b2e70a71b1f0e0fdb437bea9cb479bab864e66a6191432323ea9abb506c86105"
+  url "https://github.com/thedwncmpy/notion-cli/archive/refs/tags/v0.1.14.tar.gz"
+  sha256 "159ca24d590a04ecf90be48f0f6f336bad2ccde2af7d64467818f21af79dba51"
   license "MIT"
 
   # Core dependencies required for the CLI to function
@@ -15,6 +15,8 @@ class Ns < Formula
     # 1. Install internal libraries to libexec (private to this formula)
     # This prevents the library files from cluttering the user's global PATH.
     libexec.install "lib"
+
+    inreplace libexec/"lib/common.zsh", "__NS_VERSION__", version.to_s
 
     # 2. Rewrite launcher before install so the staged file is installed once.
     ns_src = buildpath/"bin/ns"
