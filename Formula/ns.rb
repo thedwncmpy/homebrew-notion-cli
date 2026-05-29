@@ -16,17 +16,17 @@ class Ns < Formula
     # This prevents the library files from cluttering the user's global PATH.
     libexec.install "lib"
 
-    # 2. Install the main executable to the standard bin directory
-    bin.install "bin/ns"
-
-    # 3. Fix internal path resolution for both launcher styles without requiring exact-match inreplace.
-    ns_path = bin/"ns"
-    ns_content = ns_path.read
+    # 2. Rewrite launcher before install so the staged file is installed once.
+    ns_src = buildpath/"bin/ns"
+    ns_content = ns_src.read
     ns_content.gsub!('exec "$ZSH_BIN" "$SCRIPT_DIR/../lib/notion_cli.zsh" "$@"',
                      "exec \"$ZSH_BIN\" \"#{libexec}/lib/notion_cli.zsh\" \"$@\"")
     ns_content.gsub!('source "$SCRIPT_DIR/../lib/notion_cli.zsh"',
                      "source \"#{libexec}/lib/notion_cli.zsh\"")
-    ns_path.write(ns_content)
+
+    # 3. Install rewritten executable.
+    ns_src.write(ns_content)
+    bin.install ns_src
   end
 
 
