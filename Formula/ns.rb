@@ -19,14 +19,14 @@ class Ns < Formula
     # 2. Install the main executable to the standard bin directory
     bin.install "bin/ns"
 
-    # 3. Fix the internal path resolution.
-    # Current launcher executes the zsh script directly; older versions sourced it.
-    # Keep both replacements for compatibility so packaging doesn't break across tags.
-    inreplace bin/"ns",
-              'exec "$ZSH_BIN" "$SCRIPT_DIR/../lib/notion_cli.zsh" "$@"',
-              "exec \"$ZSH_BIN\" \"#{libexec}/lib/notion_cli.zsh\" \"$@\""
-    inreplace bin/"ns", 'source "$SCRIPT_DIR/../lib/notion_cli.zsh"',
-                             "source \"#{libexec}/lib/notion_cli.zsh\""
+    # 3. Fix internal path resolution for both launcher styles without requiring exact-match inreplace.
+    ns_path = bin/"ns"
+    ns_content = ns_path.read
+    ns_content.gsub!('exec "$ZSH_BIN" "$SCRIPT_DIR/../lib/notion_cli.zsh" "$@"',
+                     "exec \"$ZSH_BIN\" \"#{libexec}/lib/notion_cli.zsh\" \"$@\"")
+    ns_content.gsub!('source "$SCRIPT_DIR/../lib/notion_cli.zsh"',
+                     "source \"#{libexec}/lib/notion_cli.zsh\"")
+    ns_path.write(ns_content)
   end
 
 
