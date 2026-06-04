@@ -7,6 +7,13 @@ class Ns < Formula
   sha256 "70ccc4f04489c2a10e0506113d6abeb1d79bd17ddab44816b0bc52cd3fc0360c"
   license "MIT"
 
+  head "https://github.com/thedwncmpy/notion-cli.git", branch: "main"
+
+  livecheck do
+    url :stable
+    strategy :github_latest
+  end
+
   # Core dependencies required for the CLI to function
   depends_on "jq"
   depends_on "python@3.12"
