@@ -7,7 +7,7 @@ class Ns < Formula
   sha256 "a19d086fc318a680b7d8fa149f915544610ecaa1c42d041c003167433b2ab10f"
   license "MIT"
 
-  head "https://github.com/thedwncmpy/notion-cli.git", branch: "head-test-3de97b3"
+  head "https://github.com/thedwncmpy/notion-cli.git", branch: "main"
 
   livecheck do
     url :stable
