@@ -2,7 +2,7 @@
 # This script defines how Homebrew should download, install, and verify the package.
 class Ns < Formula
   desc "Notion markdown sync CLI"
-  homepage "https://github.com/thedwncmpy/notion-cli"
+  homepage "https://github.com/thedwncmpy/ns-cli"
   url "https://github.com/thedwncmpy/ns-cli/archive/refs/tags/v0.2.4.tar.gz"
   sha256 "450df62e0adef52432cbec848298c9bbe486b2bb827084277a3a66e716e49bee"
   license "MIT"
