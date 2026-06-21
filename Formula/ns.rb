@@ -3,8 +3,8 @@
 class Ns < Formula
   desc "Notion markdown sync CLI"
   homepage "https://github.com/thedwncmpy/ns-cli"
-  url "https://github.com/thedwncmpy/ns-cli/archive/refs/tags/v0.2.9.tar.gz"
-  sha256 "63f4e5315a1bd887b78e1dadfd5ef809864937b72d1f709b375f00e2b216c74c"
+  url "https://github.com/thedwncmpy/ns-cli/archive/refs/tags/v0.2.10.tar.gz"
+  sha256 "fbe4a33b95fa3d26f274a7c97cca6ed34d5ddcffc04ea877dfe4337a2bf91640"
   license "MIT"
 
   head "https://github.com/thedwncmpy/notion-cli.git", branch: "main"
