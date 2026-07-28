@@ -23,6 +23,8 @@ class Ns < Formula
     # This prevents the library files from cluttering the user's global PATH.
     libexec.install "lib"
 
+    prefix.install "share"
+
     inreplace libexec/"lib/common.zsh", "__NS_VERSION__", version.to_s
 
     # 2. Rewrite launcher before install so the staged file is installed once.
